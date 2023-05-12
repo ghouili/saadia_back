@@ -22,33 +22,7 @@ const GetAll = async (req, res) => {
 
 const Add = async (req, res) => {
 
-    const { date_affect,
-        service,
-        nom,
-        prenom_pere,
-        prenom_grand_pere,
-        nom_mere,
-        prenom_mere,
-        nationalite,
-        birth_date,
-        birth_place,
-        etat_civil,
-        cin,
-        cin_date,
-        birth_gouv,
-        birth_mun,
-        arr,
-        arr_anne,
-        arr_num,
-        adress,
-        adress_appt,
-        adress_imm,
-        adress_cite,
-        local,
-        code_postal,
-        email,
-        tel,
-        role, } = req.body;
+    const { cin, email, nom, prenom, adress, tel, role } = req.body;
 
     let avatar = 'avatar.png';
     if (req.file) {
@@ -72,35 +46,15 @@ const Add = async (req, res) => {
     });
 
     const NewUser = new user({
-        date_affect,
-        service,
-        nom,
-        prenom_pere,
-        prenom_grand_pere,
-        nom_mere,
-        prenom_mere,
-        nationalite,
-        birth_date,
-        birth_place,
-        etat_civil,
         cin,
-        cin_date,
-        birth_gouv,
-        birth_mun,
-        arr,
-        arr_anne,
-        arr_num,
-        adress,
-        adress_appt,
-        adress_imm,
-        adress_cite,
-        local,
-        code_postal,
         email,
+        nom,
+        prenom,
+        adress,
         tel,
         password,
         avatar,
-        role,
+        role
     });
 
     try {
@@ -110,7 +64,7 @@ const Add = async (req, res) => {
     }
 
     // let testAccount = await nodemailer.createTestAccount();
-
+    
 
     var transporter = nodemailer.createTransport({
         // host: "smtp.mailtrap.io",
@@ -154,37 +108,7 @@ const Add = async (req, res) => {
 
 const Register = async (req, res) => {
 
-    const {
-        date_affect,
-        service,
-        nom,
-        prenom_pere,
-        prenom_grand_pere,
-        nom_mere,
-        prenom_mere,
-        nationalite,
-        birth_date,
-        birth_place,
-        etat_civil,
-        cin,
-        cin_date,
-        birth_gouv,
-        birth_mun,
-        arr,
-        arr_anne,
-        arr_num,
-        adress,
-        adress_appt,
-        adress_imm,
-        adress_cite,
-        local,
-        code_postal,
-        email,
-        tel,
-        password,
-        avatar,
-        role,
-    } = req.body;
+    const { cin, email, nom, prenom, adress, tel, password, avatar, role } = req.body;
 
 
     let existUser
@@ -198,7 +122,7 @@ const Register = async (req, res) => {
         return res.status(200).json({ success: false, messgae: 'user Already exist!!', error: false });
     }
 
-    // const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const NewUser = new user({
         cin,
@@ -207,9 +131,9 @@ const Register = async (req, res) => {
         prenom,
         adress,
         tel,
-        password: "secret",
+        password: hashedPassword,
         avatar,
-        role: "employer"
+        role: role
     });
 
     try {
@@ -269,7 +193,7 @@ const FindById = async (req, res) => {
 
 const Update = async (req, res) => {
 
-    const { nom, prenom, adress, tel } = req.body;
+    const { nom, prenom, adress, tel, role } = req.body;
     const { id } = req.params;
 
     // console.log(req.body);
@@ -300,7 +224,7 @@ const Update = async (req, res) => {
         hashedPassword = await bcrypt.hash(req.body.newpassword, salt);
         existUser.password = hashedPassword;
     }
-
+    
     if (req.file) {
         let path = `./uploads/images/${existUser.avatar}`;
         try {
@@ -319,17 +243,17 @@ const Update = async (req, res) => {
     }
     if (req.body.email) {
 
-        existUser.role = req.body.email;
+        existUser.email = req.body.email;
     }
     if (req.body.cin) {
 
-        existUser.role = req.body.cin;
+        existUser.cin = req.body.cin;
     }
     existUser.nom = nom;
     existUser.prenom = prenom;
     existUser.adress = adress;
     existUser.tel = tel;
-
+    
 
     try {
         await existUser.save();

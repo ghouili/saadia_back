@@ -7,7 +7,7 @@ const fs = require('fs');
 const mime = require('mime');
 
 const UserController = require('./Routes/user');
-const { Server } = require('net');
+const EmplyeeController = require('./Routes/Employee');
 
 const server = express();
 const PORT = 5000;
@@ -51,6 +51,7 @@ server.get('/', (req, res) => {
 });
 
 server.use('/user', UserController);
+server.use('/employee', EmplyeeController);
 
 mongoose.connect('mongodb+srv://admin:admin@saadiapfe.lnffdtt.mongodb.net/?retryWrites=true&w=majority').then((result) => {
     server.listen(PORT, () => {
