@@ -6,8 +6,9 @@ const cors = require('cors');
 const fs = require('fs');
 const mime = require('mime');
 
-const UserController = require('./Routes/user');
-const EmplyeeController = require('./Routes/Employee');
+const UserRouter = require('./Routes/user');
+const EmplyeeRouter = require('./Routes/Employee');
+const EmployeeCNSSRouter = require('./Routes/EmployeeCNSS');
 
 const server = express();
 const PORT = 5000;
@@ -20,25 +21,8 @@ server.use(cors({
 server.use("/uploads/images", express.static(path.join("uploads", "images")));
 // server.use("/uploads/PDF", express.static(path.join(__dirname, "uploads", "PDF")));
 
-
-// // Middleware to set Content-Type header for PDF files
-// server.use((req, res, next) => {
-//     const filePath = path.join(__dirname, 'uploads', 'PDF', req.path);
-//     const extname = path.extname(filePath);
-//     if (extname === '.pdf') {
-//       fs.stat(filePath, (err, stats) => {
-//         if (err) {
-//           return next(err);
-//         }
-//         res.setHeader('Content-Type', 'application/pdf');
-//         res.setHeader('Content-Length', stats.size);
-//         next();
-//       });
-//     } else {
-//       next();
-//     }
-//   });
 // Serve PDF files with the correct MIME type
+
 server.use('/uploads/pdf', (req, res, next) => {
     const filePath = path.join(__dirname, 'uploads', 'pdf', req.path);
     const mimeType = mime.getType(filePath);
@@ -50,8 +34,9 @@ server.get('/', (req, res) => {
     res.send("Hello Farfour!");
 });
 
-server.use('/user', UserController);
-server.use('/employee', EmplyeeController);
+server.use('/user', UserRouter);
+server.use('/employee', EmplyeeRouter);
+server.use('/emp_cnss', EmployeeCNSSRouter);
 
 mongoose.connect('mongodb+srv://admin:admin@saadiapfe.lnffdtt.mongodb.net/?retryWrites=true&w=majority').then((result) => {
     server.listen(PORT, () => {
