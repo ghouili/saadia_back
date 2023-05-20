@@ -9,6 +9,7 @@ const mime = require('mime');
 const UserRouter = require('./Routes/user');
 const EmplyeeRouter = require('./Routes/Employee');
 const EmployeeCNSSRouter = require('./Routes/EmployeeCNSS');
+const DocumentRouter = require('./Routes/document');
 
 const server = express();
 const PORT = 5000;
@@ -37,6 +38,7 @@ server.get('/', (req, res) => {
 server.use('/user', UserRouter);
 server.use('/employee', EmplyeeRouter);
 server.use('/emp_cnss', EmployeeCNSSRouter);
+server.use('/document', DocumentRouter);
 
 mongoose.connect('mongodb+srv://admin:admin@saadiapfe.lnffdtt.mongodb.net/?retryWrites=true&w=majority').then((result) => {
     server.listen(PORT, () => {
