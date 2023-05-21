@@ -19,7 +19,9 @@ server.use(cors({
     origin: '*'
 }));
 
+server.use(express.static('public'))
 server.use("/uploads/images", express.static(path.join("uploads", "images")));
+server.use("/uploads/files", express.static(path.join("uploads", "files")));
 // server.use("/uploads/PDF", express.static(path.join(__dirname, "uploads", "PDF")));
 
 // Serve PDF files with the correct MIME type
@@ -40,7 +42,9 @@ server.use('/employee', EmplyeeRouter);
 server.use('/emp_cnss', EmployeeCNSSRouter);
 server.use('/document', DocumentRouter);
 
-mongoose.connect('mongodb+srv://admin:admin@saadiapfe.lnffdtt.mongodb.net/?retryWrites=true&w=majority').then((result) => {
+// mongoose.connect('mongodb+srv://admin:admin@saadiapfe.lnffdtt.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://saadia:saadia@cluster0.xdslwnt.mongodb.net/?retryWrites=true&w=majority')
+.then((result) => {
     server.listen(PORT, () => {
         console.log(`server is running on port ${PORT}`);
         // console.log(result);
@@ -48,3 +52,4 @@ mongoose.connect('mongodb+srv://admin:admin@saadiapfe.lnffdtt.mongodb.net/?retry
 }).catch((err) => {
     console.log(err);
 });
+

@@ -6,10 +6,10 @@ const puppeteer = require('puppeteer');
 
 const route = express.Router();
 
-route.get('/pdf/:doc', (req, res) => {
+route.get('/show/:doc', (req, res) => {
   console.log(req.params.doc);
   // const filePath = `./uploads/images/dec_acc.pdf`;
-  const filePath = `./uploads/images/${req.params.doc}`;
+  const filePath = `./uploads/files/${req.params.doc}`;
   const absolutePath = path.resolve(filePath);
   res.setHeader('Content-Type', 'application/pdf');
   res.sendFile(absolutePath);
@@ -41,6 +41,8 @@ route.post('/generate-pdf', async (req, res) => {
   }
 });
 
+route.get('/pdf/:idAdmin/:idEmp/:doc', documentController.generatePDF);
+
 route.get('/', documentController.GetAll);
 
 route.get('/:id', documentController.FindById);
@@ -50,5 +52,6 @@ route.put('/:id',fileuploader.single('pdf'), documentController.Update);
 route.delete('/:id', documentController.Delete);
 
 route.post('/add', fileuploader.single('pdf'), documentController.Add);
+
 
 module.exports = route

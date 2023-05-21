@@ -40,6 +40,7 @@ const Add = async (req, res) => {
         return res.status(200).json({ success: false, message: 'user Already exist!!', error: false });
     }
 
+    // let password = 'secret';
     let password = generator.generate({
         length: 8,
         numbers: true
@@ -193,7 +194,7 @@ const FindById = async (req, res) => {
 
 const Update = async (req, res) => {
 
-    const { nom, prenom, adress, tel, role } = req.body;
+    const { nom, prenom, adress, tel } = req.body;
     const { id } = req.params;
 
     // console.log(req.body);

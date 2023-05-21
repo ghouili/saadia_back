@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.5;
+      }
+
+      .container {
+        position: relative;
+        margin: 20px auto;
+        padding: 20px;
+        padding-top: 50px;
+      }
+
+      .img {
+        position: absolute;
+        top: -20px;
+        left: 10px;
+      }
+      
+      .img img {
+        width: 150px;
+        height: auto;
+      }
+
+      .top {
+        position: relative;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .content {
+        margin-bottom: 20px;
+      }
+
+      .info {
+        margin-bottom: 10px;
+      }
+
+      .info label {
+        font-weight: bold;
+      }
+
+      .alig {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 50px
+      }
+
+      .footer {
+        text-align: right;
+      }
+
+      .footer .signature {
+        display: inline-block;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+        margin-bottom: 90px;
+      }
+
+      .footer2 .signature2 {
+        display: inline-block;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="img">
+        <img src="/images/cnss_logo.png" alt="cnss_logo" width="150" >
+      </div>
+
+      <div class="content">
+          <div class="info"><label>Mat: </label><%= data && data.mat %></div>
+          <div class="info header">
+              <label>DEMANDE D'IMMATRICULATION DE TRAVAILLEUR SALARIE</label>
+          </div>
+
+        <!-- <div class="info"><label>L'employeur: </label> Company Name </div> -->
+        <div class="info"><label>Date d'effet: </label><%= data && data.date_emploi %></div>
+        <div class="info"><label>Nom ou Raison Sociale: </label>SEBNTN</div>
+        <div class="info"><label>Adresse: </label>Jandouba</div>
+
+        <div class="info"><label>Je soussigné: </label><%= user && user.nom %> <%= user && user.prenom %></div>
+        <div class="info"><label>certifie en ma qualité de: </label>????</div>
+        <div class="info"><label>que (me): </label><%= data && data.nom_F %> <%= data && data.prenom_E %></div>
+        <div class="info">
+            <label>est employé(e) à notre service en qualité de: </label><%= data && data.qualite %>
+        </div>
+        <div class="info">
+            <label>depuis le (indiquer le jour, le mois et l'année): </label><%= data && data.date_emploi %>
+        </div>
+        <div class="info">
+            <label>au lieu de travail situé à l'adresse suivante: </label>Jandouba.
+        </div>
+
+        <div class="info">
+            <label>Je demande son immatriculation aux régimes de sécurité sociale et m'engage à informer la Caisse Nationale de tout changement de sa situation familiale ou professionnelle.</label>
+        </div>
+
+        <div class="info"><label>Fait à Jendouba le: </label><%= date %></div>
+      </div>
+
+      <div class="footer">
+        <div class="signature">
+            <label>Cachet et signature</label>
+        </div>
+      </div>
+
+      <div class="header">
+        <div class="title">Renseignements concernant le travailleur</div>
+      </div>
+
+      <div class="content">
+        <div class="alig">
+            <div class="info"><label>Nom de famille:</label> <%= data && data.nom_F %></div>
+            <div class="info"><label>Prénom:</label> <%= data && data.prenom_E %></div>
+        </div>
+        <div class="alig">
+          <div class="info"><label>Prénom du père:</label> <%= data && data.prenom_p %></div>
+          <div class="info"><label>Prénom du grand-père:</label> <%= data && data.prenom_gp %></div>
+        </div>
+        <div class="alig">
+          <div class="info"><label>Nom de la mère:</label> <%= data && data.nom_M %></div>
+          <div class="info"><label>Prénom de la mère:</label> <%=  data && data.prenom_m %> </div>
+        </div>
+        <div class="info"><label>Sexe:</label> <%= data && data.sexe %></div>
+        <div class="info"><label>Nationalité:</label> <%= data && data.nationalite %></div>
+        <div class="alig">
+          <div class="info"><label>Date de naissance:</label> <%= data && data.date_naiss %></div>
+          <div class="info"><label>Lieu:</label> <%= data && data.lieu_naiss %></div>
+        </div>
+        <div class="info">
+          <label>Etat civil (célibataire, marié, divorcé ou veuf):</label> <%= data && data.etat_civil %>
+        </div>
+        <div class="alig">
+          <div class="info"><label>Pièce d'identité N°:</label> <%= data && data.cin %></div>
+          <div class="info">
+            <label>Type:</label> carte d'identité nationale délivrée à Tunis le <%= data && data.date_delivre %>
+          </div>
+        </div>
+        <div class="alig">
+          <div class="info">
+            <label>Acte de naissance - Gouvernorat:</label> <%= data && data.gouvernorat %>
+          </div>
+          <div class="info"><label>Municipalité:</label> <%= data && data.municipalite %></div>
+        </div>
+        <div class="alig">
+          <div class="info"><label>Arrondissement:</label> <%= data && data.arrond %></div>
+          <div class="info"><label>Année:</label> <%= data && data.annee %></div>
+          <div class="info"><label>Numéro:</label> <%= data && data.num %></div>
+        </div>
+        <div class="info"><label>Adresse du domicile:</label> <%= data && data.adr %></div>
+        <div class="alig">
+          <div class="info"><label>Appt n°:</label> <%= data && data.appt_num %></div>
+          <div class="info"><label>Imm n°:</label> <%= data && data.imm_num %></div>
+          <div class="info"><label>Cité:</label> <%= data && data.cite %></div>
+        </div>
+        <div class="alig">
+          <div class="info"><label>Localité:</label> <%= data && data.localite %></div>
+          <div class="info"><label>Code Postal:</label> <%= data && data.c_p %></div>
+        </div>
+      </div>
+
+      <div class="footer2">
+        <div class="signature2">
+          <p>Pièces à fournir:</p>
+          <ul>
+            <li>
+              Extrait d'acte de naissance du travailleur datant de moins de 3
+              mois.
+            </li>
+            <li>
+              Copie de la Carte d'Identité Nationale ou de la Carte de séjour
+              pour les étrangers.
+            </li>
+          </ul>
+          <p>
+            Très important: Pour inscrire les membres de sa famille, le salarié
+            doit déposer, par l'intermédiaire de son employeur directement
+            auprès de l'un des bureaux régionaux et locaux de la Caisse
+            Nationale de Sécurité Sociale, un extrait d'acte de naissance datant
+            de moins de 3 mois de son conjoint et de chaque enfant à sa charge.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+      }
+      .container {
+        margin: 20px auto;
+        padding: 20px;
+        /* padding-top: 50px; */
+      }
+      .header {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        font-size: 12px;
+      }
+      
+      .elements {
+          width: fit-content;
+          display: flex;
+          flex-direction: column;
+          /* gap: -20px; */
+          align-items: center;
+          /* border: 1px solid red; */
+        }
+        .elements * {
+            margin-bottom: -6px;
+        }
+        
+        .titles {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .titles_num {
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+        }
+        .title_right {
+            text-align: end;
+        }
+        
+        .middle {
+            margin-top: 20px;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          font-size: 12px;
+        }
+      .between {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 20px;
+        margin-bottom: 100px;
+      }
+      h2 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      h3 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      ul,
+      li {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+
+      ul li:before {
+        content: "\2022"; /* Add bullet character */
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="elements">
+          <p>République tunisienne</p>
+          <p>Ministère de la Formation Professionnelle et de l'Emploi</p>
+          <p>Agence nationale pour l'emploi et le travail indépendant</p>
+          <p>Bureau de l'emploi et du travail indépendant de Jendouba</p>
+        </div>
+      </div>
+      <div class="titles">
+        <h1>Contrat de préparation à la vie professionnelle</h1>
+      </div>
+      <div class="titles_num">
+        <span class="title_right">numéro 45112</span>
+      </div>
+
+      <p>Numéro d'ordre : 15487002</p>
+      <p>Entre les soussignés :</p>
+      <p>1. Nom de l'établissement : SEBNTN</p>
+      <p>Secteur d'activité : Inistruel</p>
+      <p>
+        Siège social : Jandouba Délégation : Tunisie
+        Wilaya : JAndouba
+      </p>
+      <p>
+        Téléphone : (+216) 45 622 112 Adresse
+        électronique : sebntn.contact@gmail.com
+      </p>
+      <p>
+        Identifiant fiscal : 12548 Numéro d'affiliation à la Caisse
+        nationale de sécurité sociale : 875421
+      </p>
+      <p>Président de l'établissement : Mr Directeur</p>
+      <p>
+        Représentant en cas de besoin : Directeur Generale Téléphone mobile : 45 622 112
+      </p>
+      <p>D'une part,</p>
+      <b>2. Bénéficiaire :</b>
+      <p>Nom et prénom: <% if (data && data.nom_F && data.prenom_E) { %><%= data.nom_F %> <%= data.prenom_E %><% } %> </p>
+
+      <p>
+        Date et lieu de naissance :   <%= data && data.date_naiss %> <%= data &&
+        data.gouvernorat %> Numéro de la carte
+        d'identité nationale : <%= data && data.cin %>
+      </p>
+      <div class="info"><label>Adresse du domicile:</label> <%= data && data.adr %></div>
+        <div class="alig">
+          <div class="info"><label>Appt n°:</label> <%= data && data.appt_num %></div>
+          <div class="info"><label>Imm n°:</label> <%= data && data.imm_num %></div>
+          <div class="info"><label>Cité:</label> <%= data && data.cite %></div>
+        </div>
+
+      <b>D'autre part,</b>
+      <b>Il a été convenu ce qui suit :</b>
+      <h3>
+        Article 1: L'employeur, en vertu du contrat de préparation à la vie
+        professionnelle, accepte le bénéficiaire pour le former et l'intégrer
+        dans l'établissement, conformément à la législation et aux
+        réglementations en vigueur.
+      </h3>
+      <h3>Article 2: Le bénéficiaire occupe le poste de <%= data && data.position_acc %> et est encadré pendant la durée du contrat par M./Mme en sa qualité de <%= data && data.qualite %> Le stage se déroule selon une progression coordonnée et complète en lien avec les exigences du lieu de travail.</h3>
+
+      <h3>
+        Article 3: La durée du contrat de préparation à la vie professionnelle
+        est de 4 mois .
+      </h3>
+      <h3>
+        Article 4: Pendant la durée du contrat, le bénéficiaire s'engage à :
+      </h3>
+      <ul>
+        <li>
+          Respecter les règles et les normes de l'établissement ainsi que les
+          consignes données par l'encadrant.
+        </li>
+        <li>
+          Participer activement aux activités de formation et d'apprentissage
+          prévues dans le cadre du contrat.
+        </li>
+        <li>Se conformer aux horaires de travail établis.</li>
+        <li>
+          Effectuer les tâches qui lui sont assignées de manière consciencieuse
+          et responsable.
+        </li>
+        <li>
+          Assurer la confidentialité des informations auxquelles il aura accès
+          dans le cadre de ses fonctions.
+        </li>
+      </ul>
+      <h3>Article 5: L'employeur s'engage à :</h3>
+      <ul>
+        <li>
+          Assurer une formation adéquate au bénéficiaire, lui permettant
+          d'acquérir les compétences nécessaires pour exercer ses fonctions.
+        </li>
+        <li>
+          Offrir un encadrement et un suivi régulier pour favoriser le
+          développement professionnel du bénéficiaire.
+        </li>
+        <li>Garantir un environnement de travail sécurisé et respectueux.</li>
+      </ul>
+      <h3>
+        Article 6: Le bénéficiaire percevra une indemnité mensuelle payable à la fin de chaque
+        mois.
+      </h3>
+      <h3>
+        Article 7: Le contrat peut être résilié par l'une ou l'autre des parties
+        moyennant un préavis écrit de 7 jours.
+      </h3>
+      <h3>
+        Article 8: En cas de non-respect des obligations stipulées dans le
+        présent contrat par l'une des parties, celle-ci s'expose aux sanctions
+        prévues par la législation en vigueur.
+      </h3>
+      <h3>
+        Article 9: Tout litige découlant de l'interprétation ou de l'exécution
+        du présent contrat sera soumis à la juridiction compétente.
+      </h3>
+      <h3>
+        Article 10: Le présent contrat est établi en deux exemplaires, dont un
+        pour chaque partie.
+      </h3>
+      <div class="middle">
+        <div class="info"><label>Fait à Jendouba le: </label><%= date %></div>
+        </div>
+        <div class="between">
+            <h3>
+                Signature de l'employeur : ............................................
+            </h3>
+            <h3>
+                Signature du bénéficiaire : ............................................
+            </h3>
+        </div>
+    </div>
+  </body>
+</html>
